@@ -1,0 +1,44 @@
+﻿@inject IAzureMapsXmlService XmlService
+
+<FluentTabs>
+	<FluentTab Label="Layer">
+		<div style="@style">
+			<UIValuesGrid Items="@uiModel?.ToUIList()"
+						  ShowHover="true"
+						  TableTemplateColumns="@tableColumns" />
+		</div>
+	</FluentTab>
+	<FluentTab Label="Datasource">
+		<div style="@style">
+			<UIValuesGrid Items="@uiModel?.SourceOptions.ToUIList()"
+						  ShowHover="true"
+						  TableTemplateColumns="@tableColumns" />
+		</div>
+	</FluentTab>
+</FluentTabs>
+
+@code {
+	private string style => $"height:{Height};overflow-y: auto;";
+	private string tableColumns => string.IsNullOrWhiteSpace(TableTemplateColumns) ? "150px 1fr 2fr" : TableTemplateColumns;
+	private ILayerDefUIModel? uiModel;
+
+	/// <summary>
+	/// Css height for the grid.
+	/// </summary>
+	[Parameter, EditorRequired]
+	public string Height { get; set; }
+
+	[Parameter, EditorRequired]
+	public MapLayerDef? Model { get; set; }
+
+	/// <summary>
+	/// <see cref="UIValuesGrid.TableTemplateColumns"/>
+	/// </summary>
+	[Parameter]
+	public string? TableTemplateColumns { get; set; }
+
+	protected override void OnParametersSet()
+	{
+		uiModel = Model?.GetLayerDefUIModel(XmlService);
+	}
+}

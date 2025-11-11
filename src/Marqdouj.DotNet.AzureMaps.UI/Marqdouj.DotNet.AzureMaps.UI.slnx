@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Project Path="Marqdouj.DotNet.AzureMaps.UI/Marqdouj.DotNet.AzureMaps.UI.csproj" />
+  <Project Path="Sandbox/Sandbox.csproj" />
+</Solution>

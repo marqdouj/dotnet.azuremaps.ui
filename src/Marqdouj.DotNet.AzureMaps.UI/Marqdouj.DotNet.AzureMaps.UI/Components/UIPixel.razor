@@ -1,0 +1,56 @@
+﻿@inject IAzureMapsXmlService XmlService
+
+<UIInput Model="Value.Model">
+	<FluentStack>
+		@if (!Value.Model.ReadOnly)
+		{
+			@if (canAddNew)
+			{
+				<FluentButton IconStart="@(new Icons.Regular.Size16.Add())" Title="Add" OnClick="@AddValue" />
+			}
+			@if (canDelete)
+			{
+				<FluentButton IconStart="@(new Icons.Regular.Size16.Delete())" Title="Delete" OnClick="@DeleteValue" />
+			}
+		}
+
+		<UIText Model="@uiModel?.X" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@textOptions" />
+		<UIText Model="@uiModel?.Y" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@textOptions" />
+	</FluentStack>
+</UIInput>
+
+@code {
+	private PixelUIModel uiModel = new(null);
+	private bool canAddNew => uiModel.Source == null && !Value.Model.ReadOnly;
+	private bool canDelete => uiModel.Source != null && !Value.Model.ReadOnly && Value.Model.IsNullable;
+	private bool readOnly => Value.Model.ReadOnly || uiModel.Source == null;
+	private readonly UITextOptions textOptions = new() { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
+
+	[Parameter, EditorRequired]
+	public IUIModelInputValue Value { get; set; }
+
+	[Parameter]
+	public UIInputOptions? Options { get; set; }
+
+	protected override void OnInitialized()
+	{
+		uiModel = new(XmlService);
+	}
+
+	protected override void OnParametersSet()
+	{
+		uiModel.Source = Value.Model.Value as Pixel;
+	}
+
+	private void AddValue()
+	{
+		Value.Model.Value = new Pixel();
+		uiModel.Source = Value.Model.Value as Pixel;
+	}
+
+	private void DeleteValue()
+	{
+		Value.Model.Value = null;
+		uiModel.Source = null;
+	}
+}

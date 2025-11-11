@@ -1,0 +1,50 @@
+﻿@inject IAzureMapsXmlService XmlService
+
+<FluentCard AreaRestricted="false" Height="@height">
+	<FluentGrid>
+		@foreach (var item in inputs.Where(e => e.Visible))
+		{
+			var options = item.GridItemOptions;
+
+			<FluentGridItem Gap="@options.Gap"
+							HiddenWhen="@options.HiddenWhen"
+							Justify="@options.Justify"
+							Style="@options.Style"
+						    lg="@options.Lg" 
+							md="@options.Md" 
+							sm="@options.Sm" 
+							xl="@options.Xl" 
+							xs="@options.Xs" 
+							xxl="@options.Xxl">
+				@{
+					switch (item.InputType)
+					{
+						case UIModelInputType.Color:
+							<UIColor Model="@item.Model" Width="@item.Width" ReadOnly="@item.Model.ReadOnly" />
+							break;
+						case UIModelInputType.Pixel:
+							<UIPixel Value="@item"/>
+							break;
+						case UIModelInputType.Select:
+							<UISelect Model="@item.Model" Items="@item.Lookup" Width="@item.Width" ReadOnly="@item.Model.ReadOnly" />
+							break;
+						case UIModelInputType.Text:
+							<UIText Model="@item.Model" FieldType="@item.FieldType" ReadOnly="@item.Model.ReadOnly" Style="@item.Style"/>
+							break;
+					}
+				}
+			</FluentGridItem>
+		}
+	</FluentGrid>
+</FluentCard>
+
+	@code {
+	private List<IUIModelInputValue> inputs => Inputs ?? [];
+	private string height => string.IsNullOrWhiteSpace(Height) ? "100%" : Height;
+
+	[Parameter]
+	public string? Height { get; set; }
+
+	[Parameter, EditorRequired]
+	public List<IUIModelInputValue>? Inputs { get; set; }
+}

@@ -1,0 +1,14 @@
+﻿@implements IDialogContentComponent<List<IUIModelInputValue>>
+
+<UILayerDefInput Inputs="@Content" Height="@Height"/>
+
+@code {
+    [Parameter, EditorRequired]
+    public List<IUIModelInputValue> Content { get; set; }
+
+    [CascadingParameter]
+    public FluentDialog? Dialog { get; set; }
+
+    [Parameter]
+    public string? Height { get; set; }
+}
