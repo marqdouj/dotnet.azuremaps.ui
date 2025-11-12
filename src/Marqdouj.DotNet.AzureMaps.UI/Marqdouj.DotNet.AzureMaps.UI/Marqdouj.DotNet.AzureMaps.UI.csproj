@@ -7,7 +7,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     <PackageIcon>DMNuGet.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>10.0.0-rc-1.0</Version>
+    <Version>10.0.0-Preview-1.0</Version>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Companion UI for Marqdouj.DotNet.AzureMaps NuGet package.</Title>
@@ -37,9 +37,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Marqdouj.DotNet.AzureMaps" Version="10.0.0-rc-3.3" />
-    <PackageReference Include="Marqdouj.DotNet.Web.Components.FluentUI" Version="10.0.0-rc-2.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0-rc.2.25502.107" />
+    <PackageReference Include="Marqdouj.DotNet.AzureMaps" Version="10.0.0" />
+    <PackageReference Include="Marqdouj.DotNet.Web.Components.FluentUI" Version="10.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0" />
   </ItemGroup>
 
 </Project>
