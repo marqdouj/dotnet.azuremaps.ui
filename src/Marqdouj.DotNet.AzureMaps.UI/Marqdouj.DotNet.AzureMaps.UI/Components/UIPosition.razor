@@ -1,0 +1,68 @@
+﻿@inject IAzureMapsXmlService XmlService
+
+<UIInput Model="Value.Model">
+	<FluentStack>
+		@if (!Value.Model.ReadOnly)
+		{
+			@if (canAddNew)
+			{
+				<FluentButton IconStart="@(new Icons.Regular.Size16.Add())" Title="Add" OnClick="@AddValue" />
+			}
+			@if (canDelete)
+			{
+				<FluentButton IconStart="@(new Icons.Regular.Size16.Delete())" Title="Delete" OnClick="@DeleteValue" />
+			}
+		}
+
+		<FluentStack Orientation="@Orientation">
+			<UIText Model="@uiModel?.Longitude" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@Options" />
+			<UIText Model="@uiModel?.Latitude" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@Options" />
+			@if (ShowElevation)
+			{
+				<UIText Model="@uiModel?.Elevation" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@Options" />
+			}
+		</FluentStack>
+
+	</FluentStack>
+</UIInput>
+
+@code {
+	private PositionUIModel uiModel = new(null);
+	private bool canAddNew => uiModel.Source == null && !Value.Model.ReadOnly;
+	private bool canDelete => uiModel.Source != null && !Value.Model.ReadOnly && Value.Model.IsNullable;
+	private bool readOnly => Value.Model.ReadOnly || uiModel.Source == null;
+
+	[Parameter, EditorRequired]
+	public IUIModelInputValue Value { get; set; }
+
+	[Parameter]
+	public Orientation Orientation { get; set; } = Orientation.Vertical;
+
+	[Parameter]
+	public UITextOptions? Options { get; set; }
+
+	[Parameter]
+	public bool ShowElevation { get; set; }
+
+	protected override void OnInitialized()
+	{
+		uiModel = new(XmlService);
+	}
+
+	protected override void OnParametersSet()
+	{
+		uiModel.Source = Value.Model.Value as Position;
+	}
+
+	private void AddValue()
+	{
+		Value.Model.Value = new Position();
+		uiModel.Source = Value.Model.Value as Position;
+	}
+
+	private void DeleteValue()
+	{
+		Value.Model.Value = null;
+		uiModel.Source = null;
+	}
+}

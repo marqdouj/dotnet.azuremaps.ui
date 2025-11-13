@@ -9,6 +9,10 @@ A companion UI library for [Marqdouj.NotNet.AzureMaps](https://www.nuget.org/pac
 A demo of this, and other of my `DotNet` packages, can be found [here](https://github.com/marqdouj/dotnet.demo).
 
 ## Release Notes
+### 10.0.0-Preview-1.3
+- `ShapesGrid`. New component. Displays a list of map Shapes in a grid.
+- `UIPosition`. New component. UI Editor for a map Position.
+
 ### 10.0.0-Preview-1.2
 - Update NuGet pkgs.
 
