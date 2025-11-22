@@ -7,7 +7,7 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps.Options
 {
     public class StyleOptionsUIModel(IAzureMapsXmlService? xmlService) : XmlUIModel<StyleOptions>(xmlService), IUIInputListSource
     {
-        public List<IUIModelInputValue> ToUIInputList()
+        public virtual List<IUIModelInputValue> ToUIInputList()
         {
             var items = new List<IUIModelInputValue>
             {
