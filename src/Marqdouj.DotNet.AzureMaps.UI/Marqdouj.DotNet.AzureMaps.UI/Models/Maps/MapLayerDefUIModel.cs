@@ -5,7 +5,7 @@ using Marqdouj.DotNet.Web.Components.UI;
 
 namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
 {
-    public interface ILayerDefUIModel : IUIModel
+    public interface ILayerDefUIModel : IUIModel, IUIInputListSource
     {
         IUIModelValue Before { get; }
         IUIModelValue Id { get; }
@@ -14,7 +14,6 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
         IUIModelValue SourceUrl { get; }
 
         MapLayerDef? LayerDef { get;  }
-        List<IUIModelInputValue> ToUIInputList();
         SourceOptionsUIModel SourceOptions { get; }
     }
 

@@ -14,15 +14,27 @@
 			}
 		}
 
-		<FluentStack Orientation="@Orientation">
-			<UIText Model="@uiModel?.Longitude" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@Options" />
-			<UIText Model="@uiModel?.Latitude" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@Options" />
-			@if (ShowElevation)
-			{
-				<UIText Model="@uiModel?.Elevation" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@Options" />
-			}
-		</FluentStack>
-
+		@switch (Orientation)
+		{
+			case Orientation.Horizontal:
+				<FluentStack Orientation="@Orientation">
+					<UIText Model="@uiModel?.Longitude" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@Options" />
+					<UIText Model="@uiModel?.Latitude" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@Options" />
+					@if (ShowElevation)
+					{
+						<UIText Model="@uiModel?.Elevation" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@Options" />
+					}
+				</FluentStack>
+				break;
+			default:
+				<UIText Model="@uiModel?.Longitude" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@Options" />
+				<UIText Model="@uiModel?.Latitude" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@Options" />
+				@if (ShowElevation)
+				{
+					<UIText Model="@uiModel?.Elevation" FieldType="TextFieldType.Number" ReadOnly="@readOnly" Options="@Options" />
+				}
+				break;
+		}
 	</FluentStack>
 </UIInput>
 
@@ -36,7 +48,7 @@
 	public IUIModelInputValue Value { get; set; }
 
 	[Parameter]
-	public Orientation Orientation { get; set; } = Orientation.Vertical;
+	public Orientation Orientation { get; set; }
 
 	[Parameter]
 	public UITextOptions? Options { get; set; }

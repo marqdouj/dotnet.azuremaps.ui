@@ -68,22 +68,22 @@ namespace Sandbox.Components.Pages.Maps
 
     internal static class LayerExtensions
     {
-        public static List<IUIModelInputValue> GetInputs(this ILayerDefUIModel uiModel)
-        {
-            var inputs = uiModel.ToUIInputList();
-            var mapType = uiModel.LayerDef!.Type;
+        //public static List<IUIModelInputValue> GetInputs(this ILayerDefUIModel uiModel)
+        //{
+        //    var inputs = uiModel.ToUIInputList();
+        //    var mapType = uiModel.LayerDef!.Type;
 
-            switch (mapType)
-            {
-                case MapLayerType.Tile:
-                    inputs.FirstOrDefault(e => e.Model.Name == nameof(TileLayerOptions.TileUrl))?.Model.ReadOnly = true;
-                    break;
-                default:
-                    break;
-            }
+        //    switch (mapType)
+        //    {
+        //        case MapLayerType.Tile:
+        //            inputs.FirstOrDefault(e => e.Model.Name == nameof(TileLayerOptions.TileUrl))?.Model.ReadOnly = true;
+        //            break;
+        //        default:
+        //            break;
+        //    }
 
-            return inputs;
-        }
+        //    return inputs;
+        //}
 
         public static async Task<MapLayerDef> GetDefaultLayerDef(this MapLayerType layerType, IDataService dataService)
         {

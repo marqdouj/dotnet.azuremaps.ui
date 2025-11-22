@@ -25,6 +25,9 @@
 						case UIModelInputType.Pixel:
 							<UIPixel Value="@item"/>
 							break;
+						case UIModelInputType.Position:
+							<UIPosition Value="@item" />
+							break;
 						case UIModelInputType.Select:
 							<UISelect Model="@item.Model" Items="@item.Lookup" Width="@item.Width" ReadOnly="@item.Model.ReadOnly" />
 							break;

@@ -8,6 +8,7 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models.Input
     {
         Color,
         Pixel,
+        Position,
         Select,
         Text,
     }
