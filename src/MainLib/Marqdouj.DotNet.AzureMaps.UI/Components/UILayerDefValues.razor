@@ -10,7 +10,7 @@
 	</FluentTab>
 	<FluentTab Label="Datasource">
 		<div style="@style">
-			<UIValuesGrid Items="@uiModel?.SourceOptions.ToUIList()"
+			<UIValuesGrid Items="@uiModel?.DataSource.ToUIList()"
 						  ShowHover="true"
 						  TableTemplateColumns="@tableColumns" />
 		</div>
@@ -20,7 +20,7 @@
 @code {
 	private string style => $"height:{Height};overflow-y: auto;";
 	private string tableColumns => string.IsNullOrWhiteSpace(TableTemplateColumns) ? "150px 1fr 2fr" : TableTemplateColumns;
-	private ILayerDefUIModel? uiModel;
+	private ILayerUIModel? uiModel;
 
 	/// <summary>
 	/// Css height for the grid.

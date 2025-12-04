@@ -1,4 +1,4 @@
-﻿using Marqdouj.DotNet.AzureMaps.Map.Options;
+﻿using Marqdouj.DotNet.AzureMaps.Map.Configuration;
 using Marqdouj.DotNet.AzureMaps.UI.Models.Input;
 using Marqdouj.DotNet.AzureMaps.UI.Services;
 using Marqdouj.DotNet.Web.Components.UI;

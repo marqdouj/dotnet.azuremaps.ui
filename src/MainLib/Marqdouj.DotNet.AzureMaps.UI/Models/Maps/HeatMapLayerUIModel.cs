@@ -1,4 +1,4 @@
-﻿using Marqdouj.DotNet.AzureMaps.Map.Interop.Layers;
+﻿using Marqdouj.DotNet.AzureMaps.Map.Layers;
 using Marqdouj.DotNet.AzureMaps.UI.Models.Input;
 using Marqdouj.DotNet.AzureMaps.UI.Services;
 using Marqdouj.DotNet.Web.Components.UI;
@@ -6,7 +6,7 @@ using Microsoft.FluentUI.AspNetCore.Components;
 
 namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
 {
-    public class HeatMapLayerUIModel : MapLayerDefUIModel<HeatMapLayerDef>, ICloneable
+    public class HeatMapLayerUIModel : LayerUIModel<HeatMapLayerDef>, ICloneable
     {
         private readonly HeatMapLayerOptionsUIModel options;
 
@@ -22,7 +22,7 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
             set
             {
                 value?.Options ??= new();
-                value?.SourceOptions ??= new();
+                value?.DataSource ??= new();
 
                 base.Source = value;
                 options.Source = value?.Options;

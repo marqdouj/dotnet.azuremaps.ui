@@ -1,4 +1,4 @@
-﻿using Marqdouj.DotNet.AzureMaps.Map.Interop.Layers;
+﻿using Marqdouj.DotNet.AzureMaps.Map.Layers;
 using Marqdouj.DotNet.AzureMaps.UI.Services;
 
 namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
@@ -7,7 +7,7 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
     {
         public static MapLayerDef GetClone(this MapLayerDef layerDef)
         {
-            return layerDef.Type switch
+            return layerDef.LayerType switch
             {
                 MapLayerType.Bubble => (MapLayerDef)((BubbleLayerDef)layerDef).Clone(),
                 MapLayerType.HeatMap => (MapLayerDef)((HeatMapLayerDef)layerDef).Clone(),
@@ -17,7 +17,7 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
                 MapLayerType.PolygonExtrusion => (MapLayerDef)((PolygonExtLayerDef)layerDef).Clone(),
                 MapLayerType.Symbol => (MapLayerDef)((SymbolLayerDef)layerDef).Clone(),
                 MapLayerType.Tile => (MapLayerDef)((TileLayerDef)layerDef).Clone(),
-                _ => throw layerDef.Type.LayerNotSupported(),
+                _ => throw layerDef.LayerType.LayerNotSupported(),
             };
         }
 
@@ -37,15 +37,15 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
             };
         }
 
-        public static ILayerDefUIModel GetLayerDefUIModel(this MapLayerType layerType, IAzureMapsXmlService xmlService)
+        public static ILayerUIModel GetLayerDefUIModel(this MapLayerType layerType, IAzureMapsXmlService xmlService)
         {
             var layerDef = layerType.GetLayerDef();
             return layerDef.GetLayerDefUIModel(xmlService);
         }
 
-        public static ILayerDefUIModel GetLayerDefUIModel(this MapLayerDef layerDef, IAzureMapsXmlService xmlService)
+        public static ILayerUIModel GetLayerDefUIModel(this MapLayerDef layerDef, IAzureMapsXmlService xmlService)
         {
-            return layerDef.Type switch
+            return layerDef.LayerType switch
             {
                 MapLayerType.Bubble => new BubbleLayerUIModel(xmlService) { Source = (BubbleLayerDef)layerDef },
                 MapLayerType.HeatMap => new HeatMapLayerUIModel(xmlService) { Source = (HeatMapLayerDef)layerDef },
@@ -55,7 +55,7 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
                 MapLayerType.PolygonExtrusion => new PolygonExtLayerUIModel(xmlService) { Source = (PolygonExtLayerDef)layerDef },
                 MapLayerType.Symbol => new SymbolLayerUIModel(xmlService) { Source = (SymbolLayerDef)layerDef },
                 MapLayerType.Tile => new TileLayerUIModel(xmlService) { Source = (TileLayerDef)layerDef },
-                _ => throw layerDef.Type.LayerNotSupported(),
+                _ => throw layerDef.LayerType.LayerNotSupported(),
             };
         }
 

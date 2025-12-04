@@ -1,4 +1,4 @@
-﻿using Marqdouj.DotNet.AzureMaps.Map.Interop.Layers;
+﻿using Marqdouj.DotNet.AzureMaps.Map.Layers;
 using Marqdouj.DotNet.AzureMaps.UI.Models.Input;
 using Marqdouj.DotNet.AzureMaps.UI.Services;
 using Marqdouj.DotNet.Web.Components.UI;
@@ -6,7 +6,7 @@ using Microsoft.FluentUI.AspNetCore.Components;
 
 namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
 {
-    public class ImageLayerUIModel : MapLayerDefUIModel<ImageLayerDef>, ICloneable
+    public class ImageLayerUIModel : LayerUIModel<ImageLayerDef>, ICloneable
     {
         private readonly ImageLayerOptionsUIModel options;
 
@@ -14,6 +14,8 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
         {
             options = new(xmlService);
             Source = new();
+
+            options.Url.SortOrder = -1;
         }
 
         public override ImageLayerDef? Source
@@ -22,7 +24,7 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
             set
             {
                 value?.Options ??= new();
-                value?.SourceOptions ??= new();
+                value?.DataSource ??= new();
 
                 base.Source = value;
                 options.Source = value?.Options;

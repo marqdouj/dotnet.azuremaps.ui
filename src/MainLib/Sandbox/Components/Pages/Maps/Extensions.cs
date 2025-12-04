@@ -1,10 +1,7 @@
 ﻿using Marqdouj.DotNet.AzureMaps.Map.Common;
 using Marqdouj.DotNet.AzureMaps.Map.GeoJson;
 using Marqdouj.DotNet.AzureMaps.Map.Interop;
-using Marqdouj.DotNet.AzureMaps.Map.Interop.Features;
-using Marqdouj.DotNet.AzureMaps.Map.Interop.Layers;
-using Marqdouj.DotNet.AzureMaps.UI.Models.Input;
-using Marqdouj.DotNet.AzureMaps.UI.Models.Maps;
+using Marqdouj.DotNet.AzureMaps.Map.Layers;
 using Marqdouj.DotNet.Web.Components.Css;
 using Sandbox.Services;
 
@@ -21,7 +18,7 @@ namespace Sandbox.Components.Pages.Maps
 
     internal static class HRefExtensions
     {
-        public static string? ToHRefAddLayerExample(this MapLayerDef? layerDef) => layerDef?.Type.ToHRefAddLayerExample();
+        public static string? ToHRefAddLayerExample(this MapLayerDef? layerDef) => layerDef?.LayerType.ToHRefAddLayerExample();
 
         public static string ToHRefAddLayerExample(this MapLayerType layerType)
         {
@@ -29,7 +26,7 @@ namespace Sandbox.Components.Pages.Maps
             return hRef;
         }
 
-        public static string? ToHRefAzureDocs(this MapLayerDef? layerDef) => layerDef?.Type.ToHRefAzureDocs();
+        public static string? ToHRefAzureDocs(this MapLayerDef? layerDef) => layerDef?.LayerType.ToHRefAzureDocs();
 
         public static string ToHRefAzureDocs(this MapLayerType layerType)
         {
@@ -68,29 +65,12 @@ namespace Sandbox.Components.Pages.Maps
 
     internal static class LayerExtensions
     {
-        //public static List<IUIModelInputValue> GetInputs(this ILayerDefUIModel uiModel)
-        //{
-        //    var inputs = uiModel.ToUIInputList();
-        //    var mapType = uiModel.LayerDef!.Type;
-
-        //    switch (mapType)
-        //    {
-        //        case MapLayerType.Tile:
-        //            inputs.FirstOrDefault(e => e.Model.Name == nameof(TileLayerOptions.TileUrl))?.Model.ReadOnly = true;
-        //            break;
-        //        default:
-        //            break;
-        //    }
-
-        //    return inputs;
-        //}
-
         public static async Task<MapLayerDef> GetDefaultLayerDef(this MapLayerType layerType, IDataService dataService)
         {
             return layerType switch
             {
                 MapLayerType.Bubble => new BubbleLayerDef(),
-                MapLayerType.HeatMap => new HeatMapLayerDef() { SourceUrl = await dataService.GetHeatMapLayerUrl() },
+                MapLayerType.HeatMap => await GetDefaultHeatMapLayerDef(dataService),
                 MapLayerType.Image => await GetDefaultImageLayerDef(dataService),
                 MapLayerType.Line => new LineLayerDef()
                 {
@@ -134,6 +114,13 @@ namespace Sandbox.Components.Pages.Maps
             };
         }
 
+        private static async Task<HeatMapLayerDef> GetDefaultHeatMapLayerDef(IDataService dataService)
+        {
+            var layerDef = new HeatMapLayerDef();
+            layerDef.DataSource.Url = await dataService.GetHeatMapLayerUrl();
+            return layerDef;
+        }
+
         private static async Task<ImageLayerDef> GetDefaultImageLayerDef(IDataService dataService)
         {
             var layerDef = new ImageLayerDef();
@@ -150,7 +137,7 @@ namespace Sandbox.Components.Pages.Maps
 
         public static async Task<MapLayerDef> AddBasicMapLayer(this MapInterop mapInterop, IDataService dataService, MapLayerDef layerDef, bool zoomTo = true)
         {
-            return layerDef.Type switch
+            return layerDef.LayerType switch
             {
                 MapLayerType.Bubble => await AddBubbleLayer(mapInterop, dataService, (BubbleLayerDef)layerDef, zoomTo),
                 MapLayerType.HeatMap => await AddHeatMapLayer(mapInterop, (HeatMapLayerDef)layerDef, zoomTo),
@@ -160,7 +147,7 @@ namespace Sandbox.Components.Pages.Maps
                 MapLayerType.PolygonExtrusion => await AddPolygonExtLayer(mapInterop, dataService, (PolygonExtLayerDef)layerDef, zoomTo),
                 MapLayerType.Symbol => await AddSymbolLayer(mapInterop, dataService, (SymbolLayerDef)layerDef, zoomTo),
                 MapLayerType.Tile => await AddTileLayer(mapInterop, dataService, (TileLayerDef)layerDef, zoomTo),
-                _ => throw new ArgumentOutOfRangeException(nameof(layerDef.Type)),
+                _ => throw new ArgumentOutOfRangeException(nameof(layerDef.LayerType)),
             };
         }
 
@@ -177,7 +164,7 @@ namespace Sandbox.Components.Pages.Maps
                         { "demo", true },
                     }
             };
-            await mapInterop.Layers.AddMapFeature(featureDef, layerDef.SourceId);
+            await mapInterop.Layers.AddMapFeature(featureDef, layerDef.DataSource.Id);
 
             if (zoomTo)
                 await mapInterop.Configuration.ZoomTo(data[0], 11);
@@ -219,7 +206,7 @@ namespace Sandbox.Components.Pages.Maps
                 }
             };
 
-            await mapInterop.Layers.AddMapFeature(feature, layerDef.SourceId);
+            await mapInterop.Layers.AddMapFeature(feature, layerDef.DataSource.Id);
 
             if (zoomTo)
                 await mapInterop.Configuration.ZoomTo(data[0], 10);
@@ -242,7 +229,7 @@ namespace Sandbox.Components.Pages.Maps
                 AsShape = true
             };
 
-            await mapInterop.Layers.AddMapFeature(feature, layerDef.SourceId);
+            await mapInterop.Layers.AddMapFeature(feature, layerDef.DataSource.Id);
 
             if (zoomTo)
                 await mapInterop.Configuration.ZoomTo(data[0][0], 11);
@@ -265,7 +252,7 @@ namespace Sandbox.Components.Pages.Maps
                 AsShape = true
             };
 
-            await mapInterop.Layers.AddMapFeature(feature, layerDef.SourceId);
+            await mapInterop.Layers.AddMapFeature(feature, layerDef.DataSource.Id);
 
             if (zoomTo)
                 await mapInterop.Configuration.ZoomTo(data[0][0], 11);
@@ -294,7 +281,7 @@ namespace Sandbox.Components.Pages.Maps
                         { "demo", true },
                     }
                 };
-                await mapInterop.Layers.AddMapFeature(feature, layerDef.SourceId);
+                await mapInterop.Layers.AddMapFeature(feature, layerDef.DataSource.Id);
             }
 
             if (zoomTo)

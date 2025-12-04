@@ -1,4 +1,4 @@
-﻿using Marqdouj.DotNet.AzureMaps.Map.Interop.Layers;
+﻿using Marqdouj.DotNet.AzureMaps.Map.Layers;
 using Marqdouj.DotNet.AzureMaps.UI.Models.Input;
 using Marqdouj.DotNet.AzureMaps.UI.Services;
 using Marqdouj.DotNet.Web.Components.FluentUI.UIInput;
@@ -7,7 +7,7 @@ using Microsoft.FluentUI.AspNetCore.Components;
 
 namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
 {
-    public class LineLayerUIModel : MapLayerDefUIModel<LineLayerDef>, ICloneable
+    public class LineLayerUIModel : LayerUIModel<LineLayerDef>, ICloneable
     {
         private readonly LineLayerOptionsUIModel options;
 
@@ -23,7 +23,7 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
             set
             {
                 value?.Options ??= new();
-                value?.SourceOptions ??= new();
+                value?.DataSource ??= new();
 
                 base.Source = value;
                 options.Source = value?.Options;
