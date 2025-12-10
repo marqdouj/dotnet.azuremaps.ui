@@ -7,6 +7,10 @@ A companion UI library for [Marqdouj.DotNet.AzureMaps](https://www.nuget.org/pac
 A demo of this, and other of my `DotNet` packages, can be found [here](https://github.com/marqdouj/dotnet.demo).
 
 ## Release Notes
+### 10.3.0 (Major Changes - Non-Breaking)
+- Major changes were done to [Marqdouj.DotNet.AzureMaps](https://www.nuget.org/packages/Marqdouj.DotNet.AzureMaps/).
+- This package was updated to reflect those changes.
+
 ### 10.2.0 (Breaking Changes)
 - Major refactor was done to [Marqdouj.DotNet.AzureMaps](https://www.nuget.org/packages/Marqdouj.DotNet.AzureMaps/).
 - This package was updated to reflect those changes.
