@@ -56,7 +56,7 @@ namespace Sandbox.Components.Pages.Maps
                 HRefSource.AzureDocs => "https://learn.microsoft.com/en-us/azure/azure-maps",
                 //HRefSource.AzureMaps => "https://github.com/marqdouj/dotnet.azuremaps/blob/master/src/Marqdouj.DotNet.AzureMaps/Marqdouj.DotNet.AzureMaps",
                 HRefSource.Examples => "https://github.com/marqdouj/dotnet.azuremaps/blob/master/docs/examples/",
-                HRefSource.Sandbox => "https://github.com/marqdouj/dotnet.azuremaps.ui/blob/master/src/Marqdouj.DotNet.AzureMaps.UI/Sandbox/Components/Pages/Maps",
+                HRefSource.Sandbox => "https://github.com/marqdouj/dotnet.azuremaps.ui/blob/master/src/MainLib/Sandbox/Components/Pages/Maps",
                 _ => throw new NotImplementedException(),
             };
             return Path.Combine(url, path);
