@@ -7,6 +7,11 @@ A companion UI library for [Marqdouj.DotNet.AzureMaps](https://www.nuget.org/pac
 A demo of this, and other of my `DotNet` packages, can be found [here](https://github.com/marqdouj/dotnet.demo).
 
 ## Release Notes
+### 10.3.9
+- `UIModelInput`. Added new parameters:
+  - `Width`. Default is '100%'.
+  - `Style`. Default is 'overflow:auto;'.
+
 ### 10.3.8 - 10.3.1
 - Updated [Marqdouj.DotNet.AzureMaps](https://www.nuget.org/packages/Marqdouj.DotNet.AzureMaps/) NuGet package.
 
