@@ -1,6 +1,6 @@
 ﻿@implements IDialogContentComponent<List<IUIModelInputValue>>
 
-<UIModelInput Inputs="@Content" Height="@Height" />
+<UIModelInput Inputs="@Content" Height="@Height" Width="@Width" Style="@Style" />
 
 @code {
     [Parameter, EditorRequired]
@@ -9,6 +9,24 @@
     [CascadingParameter]
     public FluentDialog? Dialog { get; set; }
 
-    [Parameter]
-    public string? Height { get; set; }
+	/// <summary>
+	/// Valid css measurement. Default is '100%'.
+	/// <see cref="FluentCard.Height"/>
+	/// </summary>
+	[Parameter]
+	public string? Height { get; set; }
+
+	/// <summary>
+	/// Valid css measurement.  Default is '100%'.
+	/// <see cref="FluentCard.Width"/>
+	/// </summary>
+	[Parameter]
+	public string? Width { get; set; }
+
+	/// <summary>
+	/// Optional in-line styles. Default is 'overflow:auto'.
+	/// <see cref="FluentComponentBase.Style"/>
+	/// </summary>
+	[Parameter]
+	public string? Style { get; set; }
 }

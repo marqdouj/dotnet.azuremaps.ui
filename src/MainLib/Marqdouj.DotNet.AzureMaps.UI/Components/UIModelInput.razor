@@ -1,6 +1,6 @@
 ﻿@inject IAzureMapsXmlService XmlService
 
-<FluentCard AreaRestricted="false" Height="@height" Width="@width" Style="@style">
+<FluentCard AreaRestricted="false" Height="@height" Width="@width" Style="@Style">
 	<FluentGrid>
 		@foreach (var item in inputs.Where(e => e.Visible))
 		{
@@ -45,7 +45,6 @@
 	private List<IUIModelInputValue> inputs => Inputs ?? [];
 	private string height => string.IsNullOrWhiteSpace(Height) ? "100%" : Height;
 	private string width => string.IsNullOrWhiteSpace(Width) ? "100%" : Width;
-	private string style => string.IsNullOrWhiteSpace(Style) ? "overflow:auto;" : Style;
 
 	/// <summary>
 	/// Valid css measurement. Default is '100%'.

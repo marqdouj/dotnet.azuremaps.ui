@@ -7,6 +7,16 @@ A companion UI library for [Marqdouj.DotNet.AzureMaps](https://www.nuget.org/pac
 A demo of this, and other of my `DotNet` packages, can be found [here](https://github.com/marqdouj/dotnet.demo).
 
 ## Release Notes
+### 10.4.0
+- `UIModels (new)`.
+  - `TrafficOptionsUIModel`. UI Model for map Traffic options.
+- `UIModelInput`.
+  - `Style`. Removed default; was causing issues with Select and AreaRestricted.
+- `UIModelInput`. Added new parameters:
+  - `Width`. Default is '100%'.
+  - `Style`. Default is ''.
+- Updated [Marqdouj.DotNet.AzureMaps](https://www.nuget.org/packages/Marqdouj.DotNet.AzureMaps/) NuGet package.
+
 ### 10.3.9
 - `UIModelInput`. Added new parameters:
   - `Width`. Default is '100%'.
