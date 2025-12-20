@@ -12,7 +12,7 @@ A demo of this, and other of my `DotNet` packages, can be found [here](https://g
   - `TrafficOptionsUIModel`. UI Model for map Traffic options.
 - `UIModelInput`.
   - `Style`. Removed default; was causing issues with Select and AreaRestricted.
-- `UIModelInput`. Added new parameters:
+- `UIModelInputDialog`. Added new parameters:
   - `Width`. Default is '100%'.
   - `Style`. Default is ''.
 - Updated [Marqdouj.DotNet.AzureMaps](https://www.nuget.org/packages/Marqdouj.DotNet.AzureMaps/) NuGet package.
