@@ -7,6 +7,14 @@ A companion UI library for [Marqdouj.DotNet.AzureMaps](https://www.nuget.org/pac
 A demo of this, and other of my `DotNet` packages, can be found [here](https://github.com/marqdouj/dotnet.demo).
 
 ## Release Notes
+### 10.6.1
+- `DialogExtensions`.
+  - `GetDefaultDialogParameters`. 
+	- Added new optional parameter `string? width = "80%"`. 
+	- Was hard-coded to 60% previously (NOTE: you could always change it after you get the parameters).
+- `UIModelInputValue`. Removed the `TextFieldType.Url` setting on all model `Url` input values.
+  The `FluentTextField` has issues with relative Urls, so changing them to `Text` is a workaround for this issue.
+
 ### 10.6.0 - 10.5.0
 - Updated [Marqdouj.DotNet.AzureMaps](https://www.nuget.org/packages/Marqdouj.DotNet.AzureMaps/) NuGet package.
 

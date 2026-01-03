@@ -73,7 +73,7 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
                 new UIModelInputValue(MaxSourceZoom, UIModelInputType.Text, TextFieldType.Number),
                 new UIModelInputValue(TileSize, UIModelInputType.Text, TextFieldType.Number),
                 //new UIModelInputValue(Subdomains, UIModelInputType.Text),
-                new UIModelInputValue(TileUrl, UIModelInputType.Text, TextFieldType.Url){ Style="width:350px;" },
+                new UIModelInputValue(TileUrl, UIModelInputType.Text){ Style="width:350px;" },
             };
 
             items.AddRange(base.ToUIInputList());

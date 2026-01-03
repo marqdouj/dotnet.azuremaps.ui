@@ -72,7 +72,7 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
             var items = new List<IUIModelInputValue>
             {
                 //new UIModelInputValue(Coordinates, UIModelInputType.ImageCoordinates),
-                new UIModelInputValue(Url, UIModelInputType.Text, TextFieldType.Url){ Style="width:350px;" },
+                new UIModelInputValue(Url, UIModelInputType.Text){ Style="width:350px;" },
             };
 
             items.AddRange(base.ToUIInputList());

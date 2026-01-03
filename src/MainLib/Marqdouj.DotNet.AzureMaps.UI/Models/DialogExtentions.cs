@@ -6,7 +6,7 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models
 {
     public static class DialogExtentions
     {
-        public static DialogParameters GetDefaultDialogParameters(string title)
+        public static DialogParameters GetDefaultDialogParameters(string title, string? width = "80%")
         {
             DialogParameters parameters = new()
             {
@@ -14,7 +14,7 @@ namespace Marqdouj.DotNet.AzureMaps.UI.Models
                 PrimaryAction = "OK",
                 PrimaryActionEnabled = true,
                 SecondaryAction = "Cancel",
-                Width = "60%",
+                Width = width,
                 TrapFocus = true,
                 Modal = false,
                 PreventScroll = true
