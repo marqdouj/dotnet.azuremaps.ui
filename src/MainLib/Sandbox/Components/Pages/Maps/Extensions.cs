@@ -164,7 +164,7 @@ namespace Sandbox.Components.Pages.Maps
                         { "demo", true },
                     }
             };
-            await mapInterop.Layers.AddMapFeature(featureDef, layerDef.DataSource.Id);
+            await mapInterop.Layers.AddMapFeature(featureDef, layerDef.DataSource.Id!);
 
             if (zoomTo)
                 await mapInterop.Configuration.ZoomTo(data[0], 11);
@@ -206,7 +206,7 @@ namespace Sandbox.Components.Pages.Maps
                 }
             };
 
-            await mapInterop.Layers.AddMapFeature(feature, layerDef.DataSource.Id);
+            await mapInterop.Layers.AddMapFeature(feature, layerDef.DataSource.Id!);
 
             if (zoomTo)
                 await mapInterop.Configuration.ZoomTo(data[0], 10);
@@ -229,7 +229,7 @@ namespace Sandbox.Components.Pages.Maps
                 AsShape = true
             };
 
-            await mapInterop.Layers.AddMapFeature(feature, layerDef.DataSource.Id);
+            await mapInterop.Layers.AddMapFeature(feature, layerDef.DataSource.Id!);
 
             if (zoomTo)
                 await mapInterop.Configuration.ZoomTo(data[0][0], 11);
@@ -252,7 +252,7 @@ namespace Sandbox.Components.Pages.Maps
                 AsShape = true
             };
 
-            await mapInterop.Layers.AddMapFeature(feature, layerDef.DataSource.Id);
+            await mapInterop.Layers.AddMapFeature(feature, layerDef.DataSource.Id!);
 
             if (zoomTo)
                 await mapInterop.Configuration.ZoomTo(data[0][0], 11);
@@ -281,7 +281,7 @@ namespace Sandbox.Components.Pages.Maps
                         { "demo", true },
                     }
                 };
-                await mapInterop.Layers.AddMapFeature(feature, layerDef.DataSource.Id);
+                await mapInterop.Layers.AddMapFeature(feature, layerDef.DataSource.Id!);
             }
 
             if (zoomTo)
