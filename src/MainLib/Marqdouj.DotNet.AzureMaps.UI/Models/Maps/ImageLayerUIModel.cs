@@ -2,7 +2,6 @@
 using Marqdouj.DotNet.AzureMaps.UI.Models.Input;
 using Marqdouj.DotNet.AzureMaps.UI.Services;
 using Marqdouj.DotNet.Web.Components.UI;
-using Microsoft.FluentUI.AspNetCore.Components;
 
 namespace Marqdouj.DotNet.AzureMaps.UI.Models.Maps
 {

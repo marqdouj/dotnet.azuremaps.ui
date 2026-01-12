@@ -7,6 +7,12 @@ A companion UI library for [Marqdouj.DotNet.AzureMaps](https://www.nuget.org/pac
 A demo of this, and other of my `DotNet` packages, can be found [here](https://github.com/marqdouj/dotnet.demo).
 
 ## Release Notes
+### 10.7.2
+- `StyleOptionsUIModel`.
+  - Added `MapStyle` property.
+  - Seed the `MapStyles` property to included all styles except Blank/Blank_Accessible.
+- Update NuGet packages.
+
 ### 10.7.1 - 10.6.2
 - Update NuGet packages.
 
